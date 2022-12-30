@@ -1,4 +1,4 @@
-FROM alpine:3.16
+FROM docker:23.0.0-rc.1-cli-alpine3.17
 
 # To be passed to proxychains
 ARG PROXYCHAINS_ARGS="telnet somehost.com"
