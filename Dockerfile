@@ -3,6 +3,9 @@ FROM docker:23.0.0-rc.1-cli-alpine3.17
 # To be passed to proxychains
 ARG PROXYCHAINS_ARGS="telnet somehost.com"
 
+# Appended to proxychains.conf via envsubst
+ARG PROXYLIST=""
+
 COPY . /build
 WORKDIR /build
 
@@ -17,4 +20,4 @@ RUN make
 RUN make install
 
 # NOTE: uses proxychains4, not proxychains
-CMD proxychains4 $ARGS
+CMD envsubst < src/template.conf > proxychains.conf && proxychains4 -f proxychains.conf $PROXYCHAINS_ARGS
