@@ -20,4 +20,4 @@ RUN make
 RUN make install
 
 # NOTE: uses proxychains4, not proxychains
-CMD envsubst < src/template.conf > proxychains.conf && proxychains4 -f proxychains.conf $PROXYCHAINS_ARGS
+CMD envsubst < src/template.conf > conf/proxychains.conf && proxychains4 -f conf/proxychains.conf $PROXYCHAINS_ARGS
