@@ -1,7 +1,7 @@
 FROM docker:23.0.0-rc.1-cli-alpine3.17
 
 # To be passed to proxychains
-ARG ARGS=""
+ARG ARGS="-f proxychains.conf"
 
 # Appended to proxychains.conf via envsubst
 ARG PROXIES=""
@@ -20,4 +20,5 @@ RUN make
 RUN make install
 
 # NOTE: uses proxychains4, not proxychains
-CMD envsubst < src/template.conf > conf/proxychains.conf && proxychains4 -f conf/proxychains.conf $PROXYCHAINS_ARGS
+# CMD envsubst < src/template.conf > conf/proxychains.conf && proxychains4 -f conf/proxychains.conf $PROXYCHAINS_ARGS
+CMD proxychains4 $PROXYCHAINS_ARGS
