@@ -13,4 +13,4 @@ stamp-h
 proxychains4
 *.dylib
 # Ignore config changes
-conf/*
+conf/proxychains.conf
