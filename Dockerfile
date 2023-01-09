@@ -1,7 +1,8 @@
+# DinD enabled Alpine image
 FROM docker:23.0.0-rc.1-cli-alpine3.17
 
 # To be passed to proxychains
-ARG ARGS="-f conf/proxychains.conf"
+ARG ARGS="-f conf/proxychains.conf curl ifconfig.me"
 
 # Appended to proxychains.conf via envsubst
 ARG PROXIES=""
@@ -11,7 +12,7 @@ WORKDIR /build
 
 # Musl does not include cdefs.h as it is a legacy header
 RUN apk update
-RUN apk add --update-cache alpine-sdk musl-dev build-base bsd-compat-headers gettext bind-tools
+RUN apk add --update-cache alpine-sdk musl-dev build-base bsd-compat-headers gettext bind-tools curl
 
 # Ignore legacy header
 # TODO: a more permanent solution
