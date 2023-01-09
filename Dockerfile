@@ -2,7 +2,7 @@
 FROM docker:23.0.0-rc.1-cli-alpine3.17
 
 # To be passed to proxychains
-ARG ARGS="-f /etc/proxychains.conf curl ifconfig.me"
+# ARG ARGS="-f /etc/proxychains.conf sh"
 
 # Appended to proxychains.conf via envsubst
 ARG TYPE="http"
@@ -26,4 +26,4 @@ RUN make install
 
 # NOTE: uses proxychains4, not proxychains
 RUN rm -rf /etc/proxychains.conf
-CMD envsubst < conf/template.conf > /etc/proxychains.conf && proxychains4 $ARGS
+CMD envsubst < conf/template.conf > /etc/proxychains.conf && proxychains4 -f /etc/proxychains.conf sh
