@@ -2,10 +2,14 @@
 FROM docker:23.0.0-rc.1-cli-alpine3.17
 
 # To be passed to proxychains
-ARG ARGS="-f conf/proxychains.conf curl ifconfig.me"
+ARG ARGS="-f /etc/proxychains.conf curl ifconfig.me"
 
 # Appended to proxychains.conf via envsubst
-ARG PROXIES=""
+ARG TYPE="http"
+ARG ADDR="127.0.0.1"
+ARG PORT="7777"
+ARG USER=""
+ARG PASS=""
 
 COPY . /build
 WORKDIR /build
