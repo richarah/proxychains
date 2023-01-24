@@ -1,5 +1,5 @@
 # DinD enabled Alpine image
-FROM docker:23.0.0-rc.1-cli-alpine3.17
+FROM docker:20.10.23-dind-alpine3.17
 
 # To be passed to proxychains
 # ARG ARGS="-f /etc/proxychains.conf sh"
